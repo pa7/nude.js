@@ -28,18 +28,27 @@
 			b.appendChild(canvas);
 			ctx = canvas.getContext("2d");
 		},
-		loadImage = function(id){
-			
-			img = document.getElementById(id);
+		loadImageById = function(id){
+			// get the image
+			var img = document.getElementById(id);
+			// apply the width and height to the canvas element
 			canvas.width = img.width;
 			canvas.height = img.height;
-			// reset the arrays
-			skinRegions = [],
+			// reset the result function
 			resultFn = null;
 			// draw the image into the canvas element
 			ctx.drawImage(img, 0, 0);
-			
-		
+
+		},
+		loadImageByElement = function(element){
+			// apply width and height to the canvas element
+			// make sure you set width and height at the element
+			canvas.width = element.width;
+			canvas.height = element.height;
+			// reset result function
+			resultFn = null;
+			// draw the image/video element into the canvas
+			ctx.drawImage(element, 0, 0);
 		},
 		scanImage = function(){
 			// get the image data
@@ -425,8 +434,12 @@
 			init: function(){
 				initCanvas();
 			},
-			load: function(id){
-				loadImage(id);
+			load: function(param){
+				if(typeof(param) == "string"){
+					loadImageById(param);
+				}else{
+					loadImageByElement(param);
+				}
 			},
 			scan: function(fn){
 				if(arguments.length>0 && typeof(arguments[0]) == "function"){
