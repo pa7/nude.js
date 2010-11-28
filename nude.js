@@ -27,36 +27,18 @@
 			// apply the width and height to the canvas element
 			canvas.width = img.width;
 			canvas.height = img.height;
-<<<<<<< HEAD
 			// reset the result function
-=======
-			img.setAttribute("style", "visibility:hidden;");
-			domPos = getPosition(img);
->>>>>>> e35ae4920262006778fe2bdb984619f7aee04fbe
 			resultFn = null;
 			// draw the image into the canvas element
 			ctx.drawImage(img, 0, 0);
 
-<<<<<<< HEAD
-=======
-		},
-		// not ready for usage!! todo: debug
-		loadImageFromVideo = function(video){
-			canvas.width = video.width;
-			canvas.height = video.height;
-			ctx.drawImage(video, 0, 0, video.width, video.height);
->>>>>>> e35ae4920262006778fe2bdb984619f7aee04fbe
 		},
 		scanImage = function(){
 			// get the image data
 			var image = ctx.getImageData(0, 0, canvas.width, canvas.height),
 			imageData = image.data;
 
-<<<<<<< HEAD
 			var myWorker = new Worker('worker.nude.js'),
-=======
-			var myWorker = new Worker('worker.js'),
->>>>>>> e35ae4920262006778fe2bdb984619f7aee04fbe
 			message = [imageData, canvas.width, canvas.height];
 			myWorker.postMessage(message);
 			myWorker.onmessage = function(event){
@@ -70,73 +52,11 @@
 			
 			if(resultFn){
 				resultFn(result);
-<<<<<<< HEAD
 			}else{
 				if(result)
 					console.log("the picture contains nudity");
 			}
 			
-=======
-			}
-			if(img != null){
-				if(result){
-					// creating the "it's nudity" - message
-					var message = document.createElement("div");
-					message.setAttribute("style", "position:absolute;width:300px;left:"+(domPos.left+(canvas.width/2)-150)+"px;top:"+(domPos.top+(canvas.height/2))+"px;z-index:100000;cursor:pointer;padding:10px;background-color:#d9d9d9;font-family:Arial;color:#df0019;");
-					message.innerHTML = "<strong>The image contains nudity.</strong><br /><span style='color:#444;'>If this image definitely does not contain nudity click on this message</span>";
-					message.onclick = function(){
-						this.setAttribute("style","display:none");
-						img.setAttribute("style","visibility:visible;");
-					};
-					
-					var b = document.getElementsByTagName("body")[0];
-					b.appendChild(message);
-				}else{
-					img.setAttribute("style","visibility:visible;");
-				}
-			}
-		},
-		// colorizeRegions function is for testdevelopment only
-		// the detected skinRegions will be painted in random colors (one color per region)
-		colorizeRegions = function(){
-			
-			var length = skinRegions.length;
-			for(var i = 0; i < length; i++){
-				
-				var region = skinRegions[i],
-				regionLength = region.length,
-				randR = Math.ceil(Math.random()*255),
-				randG = Math.ceil(Math.random()*255),
-				rangB = Math.ceil(Math.random()*255);
-				
-				for(var o = 0; o < regionLength; o++){
-					
-					var pixel = ctx.getImageData(region[o].x, region[o].y, 1,1),
-					pdata = pixel.data;
-					
-					pdata[0] = randR;
-					pdata[1] = randG;
-					pdata[2] = rangB;
-					
-					pixel.data = pdata;
-					
-					ctx.putImageData(pixel, region[o].x, region[o].y);
-					
-				}
-				
-			}
-			
-		},
-		getPosition = function(el){
-			var x = 0, y = 0;
-			
-			while(el != null){
-				x += el.offsetLeft;
-				y += el.offsetTop;
-				el = el.offsetParent;
-			}
-			return { "left":x, "top":y };
->>>>>>> e35ae4920262006778fe2bdb984619f7aee04fbe
 		}
 		// public interface
 		return {
@@ -149,17 +69,7 @@
 					
 			},
 			load: function(param){
-<<<<<<< HEAD
 				loadImageById(param);
-=======
-				if(typeof(param)!="string"){
-					// if it's not an image tag ID
-					// it's a video element
-					loadImageFromVideo(param);
-				}else{
-					loadImage(param);
-				}
->>>>>>> e35ae4920262006778fe2bdb984619f7aee04fbe
 			},
 			scan: function(fn){
 				if(arguments.length>0 && typeof(arguments[0]) == "function"){
@@ -174,8 +84,4 @@
 		window.nude = nude;
 	// and initialize it
 	nude.init();
-<<<<<<< HEAD
 })();
-=======
-}
->>>>>>> e35ae4920262006778fe2bdb984619f7aee04fbe
