@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Nudity Detection with HTMLCanvas and Javascript</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>Demo pictures</h1>
+			<div class="entry">
+				<img id="testImage" src="images/1.jpg" width="500" height="375" alt="" />
+				<div class="btn" onclick="nude.load('testImage');nude.scan(function(result){ if(!result) document.getElementById('result1').innerHTML='No nude!'; });">Scan Image</div>
+				<div style="float:right;margin-top:-20px;" id="result1"></div>
+			</div>
+			<div class="entry">
+				<img id="testImage2" src="images/2.jpg" width="500" height="375" alt="" />
+				<div class="btn" onclick="nude.load('testImage2');nude.scan(function(result){ if(!result) document.getElementById('result2').innerHTML='No nude!!'; });">Scan Image</div>
+				<div style="float:right;margin-top:-20px;" id="result2"></div>
+			</div>
+			<div class="entry">
+				<img id="testImage3" src="images/3.jpg" width="500" height="375" alt="" />
+				<div class="btn" onclick="nude.load('testImage3');nude.scan(function(result){ if(!result) document.getElementById('result3').innerHTML='No nude!!'; });">Scan Image</div>
+				<div style="float:right;margin-top:-20px;" id="result3"></div>
+			</div>
+			<div class="entry">
+				<img id="testImage4" src="images/4.jpg" width="500" height="375" alt="" />
+				<div class="btn" onclick="nude.load('testImage4');nude.scan(function(result){ if(!result){ document.getElementById('result4').innerHTML='No nude!!'; }else{ document.getElementById('result4').innerHTML='Nude!!'; } });">Scan Image</div>
+				<div style="float:right;margin-top:-20px;" id="result4"></div>
+			</div>
+
+		</div>
+		<!-- please download excanvas if you use ie -->
+		<!--[if IE]>
+		<script type="text/javascript" src="excanvas.js"></script>	
+		<![endif]-->
+		<script type="text/javascript" src="nude.min.js"></script>
+		<script type="text/javascript" src="test.nude.js"></script>
+
+	</body>
+</html>
