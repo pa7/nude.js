@@ -7,7 +7,7 @@ The real world usage for client side nudity detection could be in webproxies wit
 nude.js is Open Source. Contributions are very welcome, the goal is to build a reliable client-side nudity scanner.
 
 The algorithm is mostly based on the following paper:
-http://www.math.admu.edu.ph/~raf/pcsc05/proceedings/AI4.pdf
+https://sites.google.com/a/dcs.upd.edu.ph/csp-proceedings/Home/pcsc-2005/AI4.pdf
 
 Demo
 Test the nudity detection script on several predefined images, I didn't have enough time to build a nice demo with flickr image support but feel free to test some of your images too. nude.js is currently supported in IE9(excanvas), FF 3.6+, Chrome, Safari and Opera. For really fast results try Chrome.
