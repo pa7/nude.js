@@ -24,14 +24,9 @@
 		loadImageById = function(id){
 			// get the image
 			var img = document.getElementById(id);
-			// apply the width and height to the canvas element
-			canvas.width = img.width;
-			canvas.height = img.height;
-			// reset the result function
-			resultFn = null;
-			// draw the image into the canvas element
-			ctx.drawImage(img, 0, 0);
 
+			// avoid duplicate
+			loadImageByElement(img);
 		},
 		loadImageByElement = function(element){
 			// apply width and height to the canvas element
