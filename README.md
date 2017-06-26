@@ -1,4 +1,4 @@
-##Nude.js
+# nude.js
 
 ***nude.js*** is a JavaScript implementation of a nudity scanner based on approaches from research papers. HTMLCanvas makes it possible to analyse image data and afterwards decide whether it should be displayed or not. The detection algorithm runs at the client, therefore it's possible (with user interaction) to display the image even if it's identified as nude (false positive)
 The real world usage for client side nudity detection could be in webproxies with child security filters, and maybe even more (e.g. on social media plattforms)
@@ -47,10 +47,10 @@ nude.scan(function(result){
 ```
 
 ###Project page:
-http://www.patrick-wied.at/static/nudejs/
+https://www.patrick-wied.at/static/nudejs/
 
 ###Contact
 If you have any questions about the project, don't hesitate to contact me:
 Patrick Wied
-http://www.patrick-wied.at
+https://www.patrick-wied.at
 contact@patrick-wied.at
