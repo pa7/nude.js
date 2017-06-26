@@ -7,7 +7,7 @@ nude.js is Open Source. Contributions are very welcome, the goal is to build a r
 **NOTE** The algorithm is mostly based on the following paper:
 https://sites.google.com/a/dcs.upd.edu.ph/csp-proceedings/Home/pcsc-2005/AI4.pdf?attredirects=0
 
-###Demo
+### Demo
 Test the nudity detection script on several predefined images, I didn't have enough time to build a nice demo with flickr image support but feel free to test some of your images too. nude.js is currently supported in IE9(excanvas), FF 3.6+, Chrome, Safari and Opera. For really fast results try Chrome.
 
 Include nude.js as ususal
@@ -22,7 +22,7 @@ Add images as usual
 ```
 Then run the checking algorithm on the images you want to run it on
 
-#####nude.js provides 3 functions:
+##### nude.js provides 3 functions:
 
 **nude.init()**
 
@@ -37,7 +37,7 @@ It uses 2 types of parameters: a valid id of an element in the document’s body
 
 This function initiates the scanning process, the optional function is executed after the scanning process finished.
 
-###Example
+### Example
 ```Javascript
 nude.load(node);
 // Scan it
@@ -46,11 +46,12 @@ nude.scan(function(result){
 });
 ```
 
-###Project page:
+### Project page
 https://www.patrick-wied.at/static/nudejs/
 
-###Contact
+### Contact
 If you have any questions about the project, don't hesitate to contact me:
-Patrick Wied
+
 https://www.patrick-wied.at
+
 contact@patrick-wied.at
