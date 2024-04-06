@@ -140,6 +140,8 @@ for(var i = 0, u = 1; i < length; i+=4, u++){
 
 }
 
+
+
 merge(detectedRegions, mergeRegions);
 analyseRegions();
 };

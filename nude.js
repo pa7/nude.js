@@ -1,7 +1,7 @@
 /*
- * Nude.js - Nudity detection with Javascript and HTMLCanvas
- * 
- * Author: Patrick Wied ( http://www.patrick-wied.at )
+* Nude.js - Nudity detection with Javascript and HTMLCanvas
+* 
+* Author: Patrick Wied ( http://www.patrick-wied.at )
  * Version: 0.1  (2010-11-21)
  * License: MIT License
  */
@@ -55,6 +55,18 @@
 				resultHandler(event.data);
 			}
 		},
+		// Function to directly scan the provided image data
+		scanVideo = function(imageData, width, height, callback) {
+			myWorker = new Worker('worker.nude.js'); // Create worker here
+			myWorker.postMessage([imageData, width, height]);
+			myWorker.onmessage = function(event) {
+				callback(event.data);
+				terminateWorker(); // Terminate the worker after processing the image
+			};
+		};
+		terminateWorker = function() {
+			myWorker.terminate();
+		},
 		// the result handler will be executed when the analysing process is done
 		// the result contains true (it is nude) or false (it is not nude)
 		// if the user passed an result function to the scan function, the result function will be executed
@@ -74,7 +86,7 @@
 				initCanvas();
 				// if web worker are not supported, append the noworker script
 				if(!!!window.Worker){
-					document.write(unescape("%3Cscript src='noworker.nude.js' type='text/javascript'%3E%3C/script%3E"));
+					document.write(decodeURIComponent("%3Cscript src='noworker.nude.js' type='text/javascript'%3E%3C/script%3E"));
 				}
 					
 			},
@@ -84,13 +96,15 @@
 				}else{
 					loadImageByElement(param);
 				}
+			
 			},
 			scan: function(fn){
 				if(arguments.length>0 && typeof(arguments[0]) == "function"){
 					resultFn = fn;
 				}
 				scanImage();
-			}
+			},
+			scanVideo: scanVideo
 		};
 	})();
 	// register nude at window object

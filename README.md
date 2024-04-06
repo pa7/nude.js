@@ -1,6 +1,6 @@
 # nude.js
 
-***nude.js*** is a JavaScript implementation of a nudity scanner based on approaches from research papers. HTMLCanvas makes it possible to analyse image data and afterwards decide whether it should be displayed or not. The detection algorithm runs at the client, therefore it's possible (with user interaction) to display the image even if it's identified as nude (false positive)
+***nude.js*** is a JavaScript implementation of a nudity scanner based on approaches from research papers. HTMLCanvas makes it possible to analyse image data and video data eventually converting it into image and afterwards decide whether it should be displayed or not. The detection algorithm runs at the client, therefore it's possible (with user interaction) to display the image even if it's identified as nude (false positive)
 The real world usage for client side nudity detection could be in webproxies with child security filters, and maybe even more (e.g. on social media plattforms)
 nude.js is Open Source. Contributions are very welcome, the goal is to build a reliable client-side nudity scanner.
 
@@ -8,7 +8,7 @@ nude.js is Open Source. Contributions are very welcome, the goal is to build a r
 https://sites.google.com/a/dcs.upd.edu.ph/csp-proceedings/Home/pcsc-2005/AI4.pdf?attredirects=0
 
 ### Demo
-Test the nudity detection script on several predefined images, I didn't have enough time to build a nice demo with flickr image support but feel free to test some of your images too. nude.js is currently supported in IE9(excanvas), FF 3.6+, Chrome, Safari and Opera. For really fast results try Chrome.
+Test the nudity detection script on several predefined images and videos, I didn't have enough time to build a nice demo with flickr image support but feel free to test some of your images too and don't forget to add your video and correct the path in predefined div for video in my html. nude.js is currently supported in IE9(excanvas), FF 3.6+, Chrome, Safari and Opera. For really fast results try Chrome.
 
 Include nude.js as ususal
 ```HTML
@@ -20,9 +20,16 @@ Add images as usual
 <img src="sample2.jpg" alt="Alt text" id="image2" onclick="onImageClick('image2');" />
 <img src="sample3.jpg" alt="Alt text" id="image3" onclick="onImageClick('image3');" />
 ```
-Then run the checking algorithm on the images you want to run it on
+Add videos as usual (
+```HTML
+<video id="demoVideo" width="320" height="240" controls>
+  <source src="sample1.mp4" type="video/mp4">
+</video>
+```
 
-##### nude.js provides 3 functions:
+Then run the checking algorithm on the images and video you want to run it on
+
+##### nude.js provides 4 functions:
 
 **nude.init()**
 
@@ -37,12 +44,28 @@ It uses 2 types of parameters: a valid id of an element in the document’s body
 
 This function initiates the scanning process, the optional function is executed after the scanning process finished.
 
+**nude.scanVideo(imageData, width, height, callback)**
+
+Allows direct scanning of provided image data. Parameters include the image data, width, height, and a callback function to handle the result.
+
 ### Example
 ```Javascript
+//for scanning images
 nude.load(node);
 // Scan it
 nude.scan(function(result){ 
     alert(result ? "Nudity found in " + node.id + "!" : "Not nude");
+});
+```
+```Javascript
+//for scanning videos
+var imageData = /* obtain image data */;
+var width = /* video frame width */;
+var height = /* video frame height */;
+
+// Perform direct video scan
+nude.scanVideo(imageData, width, height, function(result) {
+    alert(result ? "Nudity found in video frame!" : "No nudity detected in video frame");
 });
 ```
 
